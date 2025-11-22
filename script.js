@@ -1,14 +1,14 @@
-// ---- Check saved credentials on page load ----
+// ---- On page load: check if credentials exist ----
 const existingBtn = document.getElementById("existing");
 
 const savedUser = localStorage.getItem("username");
 const savedPass = localStorage.getItem("password");
 
 if (savedUser && savedPass) {
-    existingBtn.style.display = "block"; // show existing user button
+    existingBtn.style.display = "block";
 }
 
-// ---- Submit login form ----
+// ---- Login form submission ----
 document.getElementById("form").addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -19,17 +19,15 @@ document.getElementById("form").addEventListener("submit", function(event) {
     alert(`Logged in as ${username}`);
 
     if (remember) {
-        // Store credentials
         localStorage.setItem("username", username);
         localStorage.setItem("password", password);
     } else {
-        // Remove credentials
         localStorage.removeItem("username");
         localStorage.removeItem("password");
     }
 });
 
-// ---- Login as existing user ----
+// ---- Existing user login ----
 existingBtn.addEventListener("click", function() {
     const savedUsername = localStorage.getItem("username");
     alert(`Logged in as ${savedUsername}`);
